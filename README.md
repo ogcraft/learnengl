@@ -1,6 +1,6 @@
 # learnengl
 
-FIXME
+
 
 ## Prerequisites
 
