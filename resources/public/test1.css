@@ -1,0 +1,25 @@
+#out-text {
+	background-color: #eeeeee;
+	display: block;
+	width: 700px;
+}
+
+#src-text {
+	background-color: #eeeeee;
+	display: block;
+	width: 700px;
+}
+
+.W_W_T {
+	display: inline-block;
+	padding-right: 5px;
+	padding-top: 3px;
+	color: #ff0000;
+}
+
+.normal {
+	display: inline-block;
+	padding-right: 5px;
+	padding-top: 3px;
+}
+
