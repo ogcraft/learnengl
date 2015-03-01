@@ -4,28 +4,18 @@ var canon = function(word) {
 	return word.toLowerCase();
 };
 
-var normal_text = function(text) {
-	var words = text.split(/\s+/);
-	for (i = 0; i < words.length; ++i)
-    {
-		if (words[i] === '')
-			continue;
-     	var word_to_add = $('<div class="normal">'+words[i]+'</div>');
-        $('#out-text').append(word_to_add);
-    }
-};
-
 var translatify = function(text) {
 	$('#out-text').empty();
-	var regex = /\[(\w+)\|([\u0590-\u05ff]+)\]/g;
-	var src_text = text;
+	var regex = /\[(\w+)\|([\u0590-\u05ff]+)\]/;
+	var src_text = text.replace(/(\n|\n\r){2}/g,'<br>');
 
-	var sections = src_text.split(regex); //regex.exec(src_text);
+	var sections = src_text.split(regex);
 
 	var i = 0;
+	var out_html = '';
 	while (i < sections.length)
 	{
-		normal_text(sections[i]);
+		out_html += sections[i];
 		if (i % 3 === 0)
 		{
 			i+=1;
@@ -34,12 +24,13 @@ var translatify = function(text) {
 		{
 			var word = sections[i];
 			var tran = sections[i+1];
-			var trans_div = $('<div class="' + word_class_name +'">('+ tran+')</div>');
-			trans_div.addClass(canon(word));
-			$('#out-text').append(trans_div);
+			var trans_span = '<span class="' + word_class_name + ' ' + canon(word) +'">('+ tran + ')</span>';
+			out_html += trans_span;
 			i+=2;
 		}
-	}			
+	}
+
+	$('#out-text').append(out_html);	
 };
 
 $(document).ready(function() {
